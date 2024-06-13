@@ -28,11 +28,13 @@ import androidx.compose.ui.unit.dp
 import com.example.frogmistores.core.presentation.designsystem.CodeIcon
 import com.example.frogmistores.core.presentation.designsystem.LocationStore
 import com.example.frogmistores.core.presentation.designsystem.StoreIcon
+import com.example.frogmistores.domain.model.Store
 
 
 @Composable
 fun ItemStore(
     modifier: Modifier = Modifier,
+    store: Store,
     onStoreClick: () -> Unit,
     onFavoriteClick: () -> Unit,
     isFavorite: Boolean,
@@ -55,9 +57,9 @@ fun ItemStore(
             Column(
                 modifier = Modifier.padding(start = 10.dp)
             ){
-                Text(text = "Store1", style = MaterialTheme.typography.titleLarge)
-                FieldStore(icon = CodeIcon , text = "STCT0000000" )
-                FieldStore(icon = LocationStore, text = "Presidente, Santiago de chile")
+                Text(text = store.name, style = MaterialTheme.typography.titleLarge)
+                FieldStore(icon = CodeIcon , text = store.code )
+                FieldStore(icon = LocationStore, text = store.fullAddress)
             }
             Spacer(modifier = Modifier.weight(1f).padding(10.dp))
             IconButton(onClick = onFavoriteClick) {

@@ -1,8 +1,8 @@
 package com.example.frogmistores.data.remote.dto
 
-import com.squareup.moshi.Json
+import com.google.gson.annotations.SerializedName
 
 data class StoreDto(
-    @Json(name = "attributes")val attributes: Attributes,
-    @Json(name = "id")val id: String
+    @SerializedName("id") val id: String,
+    @SerializedName("attributes") val attributes: Attributes
 )

@@ -1,7 +1,8 @@
 package com.example.frogmistores.data.remote.dto
 
-import com.squareup.moshi.Json
+import com.google.gson.annotations.SerializedName
+
 
 data class StoresResponse(
-   @Json(name = "data") val stores: List<StoreDto>,
+   @SerializedName("data") val stores: List<StoreDto>,
 )

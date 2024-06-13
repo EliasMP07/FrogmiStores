@@ -20,56 +20,60 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
+import androidx.paging.LoadState
+import androidx.paging.compose.LazyPagingItems
 import com.example.frogmistores.core.presentation.designsystem.ext.shimmerEffect
+import com.example.frogmistores.domain.model.Store
 
 @Composable
 fun ShimmerListStoreItem(
-    isLoading: Boolean,
-    contentAfterLoading: @Composable () -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    if (isLoading){
-        ElevatedCard(
-            modifier = modifier,
-            shape = RoundedCornerShape(30.dp),
-            elevation = CardDefaults.elevatedCardElevation(20.dp),
+    ElevatedCard(
+        modifier = modifier,
+        shape = RoundedCornerShape(30.dp),
+        elevation = CardDefaults.elevatedCardElevation(20.dp),
+    ) {
+        Row(
+            modifier = Modifier
+                .background(MaterialTheme.colorScheme.background)
+                .border(2.dp, MaterialTheme.colorScheme.onBackground, RoundedCornerShape(30.dp))
+                .fillMaxWidth()
+                .padding(15.dp),
+            verticalAlignment = Alignment.CenterVertically
         ) {
-            Row(
+            Box(
                 modifier = Modifier
-                    .background(MaterialTheme.colorScheme.background)
-                    .border(2.dp, MaterialTheme.colorScheme.onBackground, RoundedCornerShape(30.dp))
-                    .fillMaxWidth()
-                    .padding(15.dp),
-                verticalAlignment = Alignment.CenterVertically
-            ){
+                    .size(60.dp)
+                    .clip(RoundedCornerShape(12.dp))
+                    .shimmerEffect(),
+            )
+            Column(
+                modifier = Modifier.padding(start = 10.dp)
+            ) {
                 Box(
                     modifier = Modifier
-                        .size(60.dp)
-                        .clip(RoundedCornerShape(12.dp))
-                        .shimmerEffect(),
-                )
-                Column(
-                    modifier = Modifier.padding(start = 10.dp)
-                ){
-                    Box(modifier = Modifier
                         .height(15.dp)
                         .width(80.dp)
-                        .shimmerEffect())
-                    Spacer(modifier = Modifier.height(5.dp))
-                    Box(modifier = Modifier
+                        .shimmerEffect()
+                )
+                Spacer(modifier = Modifier.height(5.dp))
+                Box(
+                    modifier = Modifier
                         .height(15.dp)
                         .width(100.dp)
-                        .shimmerEffect())
-                    Spacer(modifier = Modifier.height(5.dp))
-                    Box(modifier = Modifier
+                        .shimmerEffect()
+                )
+                Spacer(modifier = Modifier.height(5.dp))
+                Box(
+                    modifier = Modifier
                         .height(15.dp)
                         .width(200.dp)
-                        .shimmerEffect())
-                }
-
+                        .shimmerEffect()
+                )
             }
+
         }
-    }else{
-        contentAfterLoading()
     }
+
 }

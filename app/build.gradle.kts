@@ -59,6 +59,7 @@ dependencies {
     kapt(libs.androidx.room.compiler)
     implementation(libs.androidx.room.ktx)
     implementation(libs.androidx.room.paging)
+    implementation("androidx.paging:paging-runtime-ktx:3.1.1")
     implementation(libs.androidx.paging.compose)
 
     implementation(libs.androidx.core.splashscreen)
@@ -72,7 +73,7 @@ dependencies {
     implementation(libs.androidx.datastore)
 
     implementation(libs.retrofit)
-    implementation(libs.retrofit.converter.moshi)
+    implementation("com.squareup.retrofit2:converter-gson:2.11.0")
     implementation(libs.logging.interceptor)
     implementation(libs.glide.compose)
 
