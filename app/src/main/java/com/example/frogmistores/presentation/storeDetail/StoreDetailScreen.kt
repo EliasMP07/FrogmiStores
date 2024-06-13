@@ -71,7 +71,7 @@ private fun StoreDetailScreen(
     var properties by remember {
         mutableStateOf(MapProperties(mapType = MapType.NORMAL))
     }
-    val storePosition = LatLng(-33.41991, -70.585991)
+    val storePosition = LatLng(state.store.latitude, state.store.longitude)
     val cameraPositionState = rememberCameraPositionState {
         position = CameraPosition.fromLatLngZoom(storePosition, 15f)
     }
@@ -113,7 +113,6 @@ private fun StoreDetailScreen(
                     modifier = Modifier
                         .weight(1f)
                         .fillMaxWidth(),
-                    onClick = { /*TODO*/ },
                     elevation = CardDefaults.elevatedCardElevation(50.dp),
                     shape = RoundedCornerShape(topEnd = 25.dp, topStart = 25.dp),
                 ) {
@@ -128,7 +127,7 @@ private fun StoreDetailScreen(
                         )
                         FieldStore(
                             modifier = Modifier.padding(20.dp),
-                            icon = StoreIcon, text = state.store?.name?:""
+                            icon = StoreIcon, text = state.store.name
                         )
                         Text(
                             modifier = Modifier.padding(start = 20.dp, top = 10.dp),
@@ -136,7 +135,7 @@ private fun StoreDetailScreen(
                         )
                         FieldStore(
                             modifier = Modifier.padding(20.dp),
-                            icon = CodeIcon, text = state.store?.code?:""
+                            icon = CodeIcon, text = state.store.code
                         )
                         Text(
                             modifier = Modifier.padding(start = 20.dp, top = 10.dp),
@@ -144,7 +143,7 @@ private fun StoreDetailScreen(
                         )
                         FieldStore(
                             modifier = Modifier.padding(20.dp),
-                            icon = LocationStore, text = state.store?.fullAddress?:""
+                            icon = LocationStore, text = state.store.fullAddress
                         )
                     }
                 }

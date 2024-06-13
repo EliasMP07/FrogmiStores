@@ -10,7 +10,10 @@ fun StoreDto.toStoreEntity(): StoreEntity{
         id = id,
         name = attributesDto.name,
         fullAddress = attributesDto.fullAddress,
-        code = attributesDto.code
+        code = attributesDto.code,
+        latitude = attributesDto.coordinates.latitude,
+        longitude = attributesDto.coordinates.longitude
+
     )
 }
 
@@ -20,6 +23,8 @@ fun StoreEntity.toStore(): Store{
         id = id,
         name = name,
         code = code,
-        fullAddress = fullAddress
+        fullAddress = fullAddress,
+        latitude = latitude,
+        longitude = longitude
     )
 }

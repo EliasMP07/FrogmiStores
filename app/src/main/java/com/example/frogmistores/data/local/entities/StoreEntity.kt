@@ -14,5 +14,9 @@ data class StoreEntity(
     @ColumnInfo(name = "full_address")
     val fullAddress: String,
     @ColumnInfo(name = "name")
-    val name: String
+    val name: String,
+    @ColumnInfo(name = "longitude")
+    val longitude: Double,
+    @ColumnInfo(name = "latitude")
+    val latitude: Double,
 )
