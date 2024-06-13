@@ -21,9 +21,21 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import javax.inject.Singleton
 
+/**
+ * Módulo de Dagger para proporcionar dependencias relacionadas con DataStore y UserThemePreferences.
+ */
 @Module
 @InstallIn(SingletonComponent::class)
 object CoreModule {
+
+
+    /**
+     * Proporciona una instancia de DataStore<Preferences> configurada con manejo de corrupción,
+     * migraciones y un scope de corrutinas.
+     *
+     * @param context Context el contexto de la aplicación.
+     * @return DataStore<Preferences> la instancia de DataStore para almacenar preferencias.
+     */
     @Singleton
     @Provides
     fun provideDataStore(@ApplicationContext context: Context): DataStore<Preferences> {
