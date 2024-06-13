@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
     kotlin("kapt")
+    id("kotlin-parcelize")
     alias(libs.plugins.android.hilt.plugin)
 }
 
@@ -55,9 +56,17 @@ android {
 
 dependencies {
 
+    //GoogleMaps
+    implementation(libs.play.services.location)
+    implementation("com.google.maps.android:maps-compose:4.4.1")
+    implementation(libs.play.services.maps)
+
 
     // Get day of week api 25 or lower
     coreLibraryDesugaring(libs.desugar.jdk.libs)
+
+    //Serialization
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.1")
 
     //Room
     implementation(libs.androidx.room.runtime)

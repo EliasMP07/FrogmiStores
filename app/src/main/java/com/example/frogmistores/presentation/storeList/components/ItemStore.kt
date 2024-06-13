@@ -74,20 +74,22 @@ private fun IconStore(){
         contentAlignment = Alignment.Center
     ){
         Icon(
-            imageVector = StoreIcon, contentDescription = "Icon Store",
+            imageVector = StoreIcon, contentDescription = "Icono de tienda",
             tint = MaterialTheme.colorScheme.background
         )
     }
 }
 @Composable
-private fun FieldStore(
+fun FieldStore(
+    modifier: Modifier = Modifier,
     icon: ImageVector,
     text: String,
 ){
     Row(
+        modifier = modifier,
         verticalAlignment = Alignment.CenterVertically
     ){
-        Icon(imageVector = icon, contentDescription = "")
+        Icon(imageVector = icon, contentDescription = "Icono de campo")
         Text(text = text, style = MaterialTheme.typography.bodyMedium)
     }
 }

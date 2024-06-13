@@ -1,7 +1,3 @@
-@file:OptIn(
-    ExperimentalMaterial3Api::class, ExperimentalMaterial3Api::class,
-    ExperimentalMaterial3Api::class, ExperimentalMaterial3Api::class
-)
 
 package com.example.frogmistores.core.presentation.designsystem.component
 
@@ -24,6 +20,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 
 
+@ExperimentalMaterial3Api
 @Composable
 fun FrogmiStoreToolbar(
     modifier: Modifier = Modifier,

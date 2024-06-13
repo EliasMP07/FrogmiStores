@@ -1,3 +1,5 @@
+@file:OptIn(ExperimentalMaterial3Api::class)
+
 package com.example.frogmistores
 
 import android.os.Bundle
@@ -6,6 +8,7 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -16,6 +19,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.frogmistores.core.presentation.designsystem.FrogmiStoresTheme
+import com.example.frogmistores.presentation.storeDetail.StoreDetailScreenRoot
 import com.example.frogmistores.presentation.storeList.StoreListScreenRoot
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -43,13 +47,14 @@ class MainActivity : ComponentActivity() {
                     color = Color.Transparent
                 ) {
                     if (state.themeValue!= null){
-                        StoreListScreenRoot(
+                       /* StoreListScreenRoot(
                             isDarkTheme = state.themeValue?:false,
                             onThemeUpdate = {
                                 viewModel.onAction(MainAction.OnUpdateTheme)
                             },
                             onStoreClickDetail = {}
-                        )
+                        )*/
+                        StoreDetailScreenRoot()
                     }
                 }
             }

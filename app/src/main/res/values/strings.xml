@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">FrogmiStores</string>
-    <string name="myfavorites">Mis Favoritos</string>
+    <string name="google_maps_key">AIzaSyBtTASc03P6hbW3nkZHsi7mjxc4OmwZP3s</string>
+    <string name="field_store">"Tienda: "</string>
+    <string name="field_code">"Codigo: "</string>
+    <string name="field_location">"Direccion: "</string>
 </resources>

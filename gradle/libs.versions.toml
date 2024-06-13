@@ -17,13 +17,15 @@ logging_interceptor_version = "5.0.0-alpha.2"
 pagingCompose = "1.0.0-alpha18"
 pagingRuntimeKtx = "3.1.1"
 retrofit_version = "2.11.0"
-glide_version = "1.0.0-beta01"
 icons_dependency = "1.6.7"
 ksp = "1.9.22-1.0.17"
 composeAnimation = "1.7.0-alpha07"
 navigationCompose = "2.7.7"
 roomRuntime = "2.6.1"
 desugar_jdk_libs = "2.0.3"
+serialization_version = "1.8.0"
+playServicesLocationVersion = "21.3.0"
+playServicesMapsVersion = "18.2.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -60,9 +62,13 @@ androidx-datastore = {group = "androidx.datastore", name = "datastore-preference
 retrofit = {group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit_version"}
 logging-interceptor = {group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "logging_interceptor_version"}
 desugar_jdk_libs = { module = "com.android.tools:desugar_jdk_libs", version.ref = "desugar_jdk_libs" }
+play-services-location = { group = "com.google.android.gms", name = "play-services-location", version.ref = "playServicesLocationVersion" }
+play-services-maps = { module = "com.google.android.gms:play-services-maps", version.ref = "playServicesMapsVersion" }
+
 [plugins]
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 android-application = { id = "com.android.application", version.ref = "agp" }
 jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 android-hilt-plugin = {id = "com.google.dagger.hilt.android", version.ref= "hilt_version"}
+android-serialization = {id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "serialization_version"}
 
