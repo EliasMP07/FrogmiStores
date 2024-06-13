@@ -23,7 +23,6 @@ class MainActivity : ComponentActivity() {
             FrogmiStoresTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
                     StoreListScreenRoot(
-                        onMyFavoriteClick = {},
                         onStoreClickDetail = {}
                     )
                 }

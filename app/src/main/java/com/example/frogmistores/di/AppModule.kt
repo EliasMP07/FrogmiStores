@@ -13,6 +13,7 @@ import com.example.frogmistores.data.local.entities.StoreEntity
 import com.example.frogmistores.data.paging.FrogmiStoresRemoteMediator
 import com.example.frogmistores.data.remote.FrogmiStoresApi
 import com.example.frogmistores.data.repository.StoreRepositoryImpl
+import com.example.frogmistores.domain.GetAllStoresUseCase
 import com.example.frogmistores.domain.repository.StoreRepository
 import dagger.Module
 import dagger.Provides
@@ -72,5 +73,9 @@ object AppModule {
         frogmiStoresApi: FrogmiStoresApi,
         storeDatabase: FrogmiStoreDatabase
     ): StoreRepository = StoreRepositoryImpl(frogmiStoresApi, storeDatabase)
+
+    @Provides
+    @Singleton
+    fun provideGetAllStoresUseCase(repository: StoreRepository): GetAllStoresUseCase = GetAllStoresUseCase(repository)
 
 }

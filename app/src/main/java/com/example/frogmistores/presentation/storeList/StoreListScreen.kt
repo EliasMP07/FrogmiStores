@@ -54,7 +54,6 @@ import com.example.frogmistores.presentation.storeList.components.ShimmerListSto
 @Composable
 fun StoreListScreenRoot(
     onStoreClickDetail: () -> Unit,
-    onMyFavoriteClick: () -> Unit,
     viewModel: StoreListViewModel = hiltViewModel()
 ) {
     val state by viewModel.state.collectAsState()
@@ -69,16 +68,12 @@ fun StoreListScreenRoot(
             ).show()
         }
     }
-
     StoreListScreen(
         state = state,
         onAction = { action ->
             when (action) {
                 StoreListAction.OnStoreClick -> onStoreClickDetail()
-                StoreListAction.OnMyFavoritesClick -> onMyFavoriteClick()
-                else -> Unit
             }
-            viewModel.onAction(action)
         },
         stores
     )
