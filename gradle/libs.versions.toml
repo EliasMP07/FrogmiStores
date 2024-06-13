@@ -7,6 +7,7 @@ coreKtx = "1.13.1"
 junit = "4.13.2"
 junitVersion = "1.1.5"
 espressoCore = "3.5.1"
+kotlinxCoroutinesTest = "1.8.0"
 lifecycleRuntimeKtx = "2.8.1"
 activityCompose = "1.9.0"
 composeBom = "2024.06.00"
@@ -14,6 +15,7 @@ hilt-navigation = "1.2.0"
 hilt_version = "2.51.1"
 datastore_version = "1.1.1"
 logging_interceptor_version = "5.0.0-alpha.2"
+mockitoCore = "3.11.2"
 pagingCompose = "1.0.0-alpha18"
 pagingRuntimeKtx = "3.1.1"
 retrofit_version = "2.11.0"
@@ -59,6 +61,8 @@ hilt-android-testing = { group = "com.google.dagger", name = "hilt-android-testi
 hilt-android = {group = "com.google.dagger", name = "hilt-android", version.ref = "hilt_version"}
 hilt-navigation-compose =  {group = "androidx.hilt", name = "hilt-navigation-compose", version.ref = "hilt-navigation"}
 androidx-datastore = {group = "androidx.datastore", name = "datastore-preferences", version.ref = "datastore_version"}
+kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "kotlinxCoroutinesTest" }
+mockito-core = { module = "org.mockito:mockito-core", version.ref = "mockitoCore" }
 retrofit = {group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit_version"}
 logging-interceptor = {group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "logging_interceptor_version"}
 desugar_jdk_libs = { module = "com.android.tools:desugar_jdk_libs", version.ref = "desugar_jdk_libs" }
