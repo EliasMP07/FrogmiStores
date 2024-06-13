@@ -1,6 +1,8 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+    kotlin("kapt")
+    alias(libs.plugins.android.hilt.plugin)
 }
 
 android {
@@ -50,6 +52,31 @@ android {
 }
 
 dependencies {
+
+    //Room
+    implementation(libs.androidx.room.runtime)
+    kapt(libs.androidx.room.compiler)
+    implementation(libs.androidx.room.ktx)
+    implementation(libs.androidx.room.paging)
+    implementation(libs.androidx.paging.compose)
+
+    implementation(libs.androidx.core.splashscreen)
+    kapt(libs.hilt.compiler)
+    kapt(libs.hilt.compiler.android)
+    implementation(libs.hilt.android.testing)
+    implementation(libs.hilt.android)
+    implementation(libs.hilt.navigation.compose)
+
+    implementation(libs.androidx.compose.material.icon)
+    implementation(libs.androidx.datastore)
+
+    implementation(libs.retrofit)
+    implementation(libs.retrofit.converter.moshi)
+    implementation(libs.logging.interceptor)
+    implementation(libs.glide.compose)
+
+    implementation(libs.androidx.compose.animation)
+    implementation(libs.androidx.navigation.compose)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
