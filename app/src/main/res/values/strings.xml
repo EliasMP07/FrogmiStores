@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">FrogmiStores</string>
-    <string name="google_maps_key"></string>
+    <string name="google_maps_key"></string><!--Aqui tu key de GoogleMaps-->
     <string name="field_store">"Tienda: "</string>
     <string name="field_code">"Codigo: "</string>
     <string name="field_location">"Direccion: "</string>

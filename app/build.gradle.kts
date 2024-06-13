@@ -102,6 +102,12 @@ dependencies {
     implementation(libs.androidx.compose.animation)
     implementation(libs.androidx.navigation.compose)
 
+    //Test
+    implementation(libs.junit)
+    implementation(libs.mockito.core)
+    implementation(libs.kotlinx.coroutines.test)
+    implementation("androidx.arch.core:core-testing:2.2.0")
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
