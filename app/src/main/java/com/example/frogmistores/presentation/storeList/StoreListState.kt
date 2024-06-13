@@ -1,4 +1,5 @@
 package com.example.frogmistores.presentation.storeList
 
-class StoreListState {
-}
+data class StoreListState(
+    val value: String = ""
+)

@@ -1,4 +1,6 @@
-@file:OptIn(ExperimentalMaterial3Api::class, ExperimentalMaterial3Api::class)
+@file:OptIn(ExperimentalMaterial3Api::class, ExperimentalMaterial3Api::class,
+    ExperimentalMaterial3Api::class
+)
 
 package com.example.frogmistores.presentation.storeList
 
@@ -19,12 +21,15 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.rememberTopAppBarState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.frogmistores.R
 import com.example.frogmistores.core.presentation.designsystem.FrogmiStoresTheme
 import com.example.frogmistores.core.presentation.designsystem.component.FrogmiStoreToolbar
@@ -34,11 +39,21 @@ import com.example.frogmistores.presentation.storeList.components.ShimmerListSto
 
 @Composable
 fun StoreListScreenRoot(
-    //viewModel: StoreListViewModel = hiltViewModel()
+    onStoreClickDetail: () -> Unit,
+    onMyFavoriteClick: () -> Unit,
+    viewModel: StoreListViewModel = hiltViewModel()
 ) {
+    val state by viewModel.state.collectAsState()
     StoreListScreen(
-         state = StoreListState(),
-         onAction = {}
+         state = state,
+         onAction = {action ->
+             when(action){
+                 StoreListAction.OnStoreClick -> onStoreClickDetail()
+                 StoreListAction.OnMyFavoritesClick -> onMyFavoriteClick()
+                 else -> Unit
+             }
+             viewModel.onAction(action)
+         }
      )
 }
 
@@ -83,7 +98,7 @@ private fun StoreListScreen(
                     )
                 },
                 onClick = {
-
+                    onAction(StoreListAction.OnMyFavoritesClick)
                 },
                 expanded = lazyColumnState.isScrolled()
             )
@@ -102,10 +117,10 @@ private fun StoreListScreen(
                         ItemStore(
                             isFavorite = false,
                             onStoreClick = {
-
+                                onAction(StoreListAction.OnStoreClick)
                             },
                             onFavoriteClick = {
-
+                                onAction(StoreListAction.OnFavoriteClick)
                             }
                         )
                     }
