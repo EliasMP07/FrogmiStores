@@ -1,4 +1,4 @@
-package com.example.frogmistores.data.local.ddao
+package com.example.frogmistores.data.local.dao
 
 import androidx.room.Dao
 import androidx.room.Insert

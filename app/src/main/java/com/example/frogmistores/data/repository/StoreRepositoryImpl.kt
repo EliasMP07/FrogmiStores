@@ -11,6 +11,7 @@ import com.example.frogmistores.data.local.database.FrogmiStoreDatabase
 import com.example.frogmistores.data.mappers.toStore
 import com.example.frogmistores.data.paging.FrogmiStoresRemoteMediator
 import com.example.frogmistores.data.remote.FrogmiStoresApi
+import com.example.frogmistores.data.utils.Const
 import com.example.frogmistores.domain.model.Store
 import com.example.frogmistores.domain.repository.StoreRepository
 import kotlinx.coroutines.flow.Flow
@@ -19,20 +20,20 @@ import kotlinx.coroutines.flow.map
 class StoreRepositoryImpl(
     private val frogmiStoresApi: FrogmiStoresApi,
     private val storeDatabase: FrogmiStoreDatabase
-): StoreRepository {
+) : StoreRepository {
     override fun getAllStores(): Flow<PagingData<Store>> {
         val pagingSourceFactory = {
             storeDatabase.dao.pagingSource()
         }
         return Pager(
-            config = PagingConfig(pageSize = 10),
+            config = PagingConfig(pageSize = Const.ITEMS_PER_PAGE),
             remoteMediator = FrogmiStoresRemoteMediator(
-                storeDb =  storeDatabase,
-                frogmiStoreApi =  frogmiStoresApi
+                storeDb = storeDatabase,
+                frogmiStoreApi = frogmiStoresApi
             ),
             pagingSourceFactory = pagingSourceFactory
-        ).flow.map {pagingData ->
-            pagingData.map {storeEntity ->
+        ).flow.map { pagingData ->
+            pagingData.map { storeEntity ->
                 storeEntity.toStore()
             }
         }

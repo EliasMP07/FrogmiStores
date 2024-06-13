@@ -8,9 +8,9 @@ import com.example.frogmistores.domain.model.Store
 fun StoreDto.toStoreEntity(): StoreEntity{
     return StoreEntity(
         id = id,
-        name = attributes.name,
-        fullAddress = attributes.fullAddress,
-        code = attributes.code
+        name = attributesDto.name,
+        fullAddress = attributesDto.fullAddress,
+        code = attributesDto.code
     )
 }
 

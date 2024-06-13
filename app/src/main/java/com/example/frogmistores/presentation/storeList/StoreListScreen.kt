@@ -47,6 +47,7 @@ import androidx.paging.compose.items
 import com.example.frogmistores.R
 import com.example.frogmistores.core.presentation.designsystem.component.FrogmiStoreToolbar
 import com.example.frogmistores.core.presentation.designsystem.ext.isScrolled
+import com.example.frogmistores.data.utils.Const
 import com.example.frogmistores.domain.model.Store
 import com.example.frogmistores.presentation.storeList.components.ItemStore
 import com.example.frogmistores.presentation.storeList.components.ShimmerListStoreItem
@@ -61,6 +62,7 @@ fun StoreListScreenRoot(
     val stores = viewModel.storePaggingFlow.collectAsLazyPagingItems()
 
     val context = LocalContext.current
+
     LaunchedEffect(key1 = stores.loadState) {
         if (stores.loadState.refresh is LoadState.Error) {
             Toast.makeText(
@@ -145,7 +147,7 @@ private fun StoreListScreen(
                     .fillMaxSize(),
                 verticalArrangement = Arrangement.spacedBy(10.dp)
             ) {
-                items(10) {
+                items(Const.ITEMS_PER_PAGE) {
                     ShimmerListStoreItem()
                 }
             }

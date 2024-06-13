@@ -2,7 +2,7 @@ package com.example.frogmistores.data.remote
 
 import com.example.frogmistores.data.remote.dto.StoreDto
 import com.example.frogmistores.data.remote.dto.StoresResponse
-import com.example.frogmistores.data.remote.utils.Const
+import com.example.frogmistores.data.utils.Const
 import retrofit2.http.GET
 import retrofit2.http.Headers
 import retrofit2.http.Query

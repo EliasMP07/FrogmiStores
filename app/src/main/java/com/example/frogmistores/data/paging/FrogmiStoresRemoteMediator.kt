@@ -13,6 +13,7 @@ import com.example.frogmistores.data.local.entities.StoreEntity
 import com.example.frogmistores.data.local.entities.StoreRemoteKeys
 import com.example.frogmistores.data.mappers.toStoreEntity
 import com.example.frogmistores.data.remote.FrogmiStoresApi
+import com.example.frogmistores.data.utils.Const
 import java.io.IOException
 
 class FrogmiStoresRemoteMediator(
@@ -49,7 +50,7 @@ class FrogmiStoresRemoteMediator(
                 }
             }
             val response = frogmiStoreApi.getStores(
-                pageCount = 10,
+                pageCount = Const.ITEMS_PER_PAGE,
                 page = currentPage
             ).stores.map {
                 it.toStoreEntity()
