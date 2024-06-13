@@ -13,14 +13,13 @@ Para poder ejecutar necesitaras de las 2 credenciales, si la tienes la tienes qu
 
 Para poder utilizar el GoogleMaps necesitaras de la Api key la cual si tienes podras agregarlo en el
 archivo string el cual se encuentra en Res/values/string.xml
+
 ![Image text](https://github.com/EliasMP07/FrogmiStores/blob/main/app/src/main/assets/add_key_gooogle.png)
-
-
 
 ·#Ejecucion de la APP
 
--Asegúrate de que tu dispositivo o emulador esté conectado.
--Haz clic en el botón "Run" en Android Studio
+- Asegúrate de que tu dispositivo o emulador esté conectado.
+- Haz clic en el botón "Run" en Android Studio
 
 ##Video de ejecucion de App
 

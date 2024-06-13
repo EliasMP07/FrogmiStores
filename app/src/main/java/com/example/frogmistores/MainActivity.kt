@@ -33,7 +33,6 @@ class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         installSplashScreen().setKeepOnScreenCondition{
             viewModel.state.value.themeValue != null
         }
