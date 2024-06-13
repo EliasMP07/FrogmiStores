@@ -5,15 +5,16 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.frogmistores.core.presentation.designsystem.FrogmiStoresTheme
 import com.example.frogmistores.presentation.storeList.StoreListScreenRoot
 import dagger.hilt.android.AndroidEntryPoint
@@ -21,24 +22,35 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
-    val mainViewModel: MainViewModel by viewModels()
+    val viewModel: MainViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+        installSplashScreen().apply {
+            setKeepOnScreenCondition {
+                viewModel.state.value.themeValue != null
+            }
+        }
         setContent {
-            val theme by mainViewModel.themeValue.collectAsState(initial = isSystemInDarkTheme())
+            val state by viewModel.state.collectAsStateWithLifecycle()
             FrogmiStoresTheme(
-                darkTheme = theme
+                darkTheme = state.themeValue?:false
             ) {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    StoreListScreenRoot(
-                        isDarkTheme = theme,
-                        onThemeUpdate = {
-                            mainViewModel.onAction(MainAction.OnUpdateTheme)
-                        },
-                        onStoreClickDetail = {}
-                    )
+                Surface(
+                    modifier = Modifier
+                        .fillMaxSize(),
+                    color = Color.Transparent
+                ) {
+                    if (state.themeValue!= null){
+                        StoreListScreenRoot(
+                            isDarkTheme = state.themeValue?:false,
+                            onThemeUpdate = {
+                                viewModel.onAction(MainAction.OnUpdateTheme)
+                            },
+                            onStoreClickDetail = {}
+                        )
+                    }
                 }
             }
         }

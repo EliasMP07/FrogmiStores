@@ -2,8 +2,8 @@ package com.example.frogmistores.data.local.database
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
-import com.example.frogmistores.data.local.dao.StoresDao
 import com.example.frogmistores.data.local.dao.StoreRemoteKeyDao
+import com.example.frogmistores.data.local.dao.StoresDao
 import com.example.frogmistores.data.local.entities.StoreEntity
 import com.example.frogmistores.data.local.entities.StoreRemoteKeys
 

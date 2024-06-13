@@ -3,14 +3,9 @@
 package com.example.frogmistores.di
 
 import android.content.Context
-import androidx.compose.ui.geometry.Rect
 import androidx.paging.ExperimentalPagingApi
-import androidx.paging.Pager
-import androidx.paging.PagingConfig
 import androidx.room.Room
 import com.example.frogmistores.data.local.database.FrogmiStoreDatabase
-import com.example.frogmistores.data.local.entities.StoreEntity
-import com.example.frogmistores.data.paging.FrogmiStoresRemoteMediator
 import com.example.frogmistores.data.remote.FrogmiStoresApi
 import com.example.frogmistores.data.repository.StoreRepositoryImpl
 import com.example.frogmistores.domain.GetAllStoresUseCase

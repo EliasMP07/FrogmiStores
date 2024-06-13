@@ -2,6 +2,7 @@
 package com.example.frogmistores.presentation.storeList
 
 import android.widget.Toast
+import androidx.compose.animation.Crossfade
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
@@ -21,9 +22,7 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.rememberTopAppBarState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -47,7 +46,6 @@ import com.example.frogmistores.presentation.storeList.components.CustomSnackbar
 import com.example.frogmistores.presentation.storeList.components.ItemStore
 import com.example.frogmistores.presentation.storeList.components.ShimmerListStoreItem
 import com.example.frogmistores.presentation.storeList.components.ThemeSwitcher
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 
 @Composable
 fun StoreListScreenRoot(
@@ -91,14 +89,12 @@ private fun StoreListScreen(
     val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior(
         state = topAppBarState
     )
-    val (snackbarState, setSnackbarState) = remember { mutableStateOf(SnackbarHostState()) }
+    val snackbarState = remember { SnackbarHostState() }
     LaunchedEffect(key1 = connection) {
-        if (
-            connection == ConnectionState.Unavailable
-        ) {
+        if (connection == ConnectionState.Unavailable) {
             snackbarState.showSnackbar(
                 withDismissAction = true,
-                message = "No hay conexion",
+                message = "No hay conexión",
                 duration = SnackbarDuration.Short
             )
         }
@@ -110,8 +106,8 @@ private fun StoreListScreen(
             SnackbarHost(
                 hostState = snackbarState,
                 modifier = Modifier.fillMaxWidth()
-            ) {
-                CustomSnackbar(snackbarData = it)
+            ) { data ->
+                CustomSnackbar(snackbarData = data)
             }
         },
         topBar = {
@@ -136,49 +132,51 @@ private fun StoreListScreen(
                 }
             )
         },
-    ) {
-        if (stores.loadState.refresh is LoadState.Loading) {
-            LazyColumn(
-                contentPadding = PaddingValues(10.dp),
-                state = lazyColumnState,
-                modifier = Modifier
-                    .padding(it)
-                    .fillMaxSize(),
-                verticalArrangement = Arrangement.spacedBy(10.dp)
-            ) {
-                items(Const.ITEMS_PER_PAGE) {
-                    ShimmerListStoreItem()
-                }
-            }
-        } else {
-            LazyColumn(
-                contentPadding = PaddingValues(10.dp),
-                state = lazyColumnState,
-                modifier = Modifier
-                    .padding(it)
-                    .fillMaxSize(),
-                verticalArrangement = Arrangement.spacedBy(10.dp)
-            ) {
-                items(
-                    items = stores
-                ) { stores ->
-                    if (stores != null) {
-                        ItemStore(
-                            store = stores,
-                            onStoreClick = {
-                                onAction(StoreListAction.OnStoreClick)
-                            }
-                        )
+    ) { padding ->
+        Crossfade(targetState = stores.loadState.refresh is LoadState.Loading,
+            label = ""
+        ) { isLoading ->
+            if (isLoading) {
+                LazyColumn(
+                    contentPadding = PaddingValues(10.dp),
+                    state = lazyColumnState,
+                    modifier = Modifier
+                        .padding(padding)
+                        .fillMaxSize(),
+                    verticalArrangement = Arrangement.spacedBy(10.dp)
+                ) {
+                    items(Const.ITEMS_PER_PAGE) {
+                        ShimmerListStoreItem()
                     }
                 }
-                item {
-                    if (stores.loadState.append is LoadState.Loading) {
-                        Row(
-                            modifier = Modifier.fillMaxWidth(),
-                            verticalAlignment = Alignment.CenterVertically,
-                            horizontalArrangement = Arrangement.Center
-                        ) {
-                            CircularProgressIndicator()
+            } else {
+                LazyColumn(
+                    contentPadding = PaddingValues(10.dp),
+                    state = lazyColumnState,
+                    modifier = Modifier
+                        .padding(padding)
+                        .fillMaxSize(),
+                    verticalArrangement = Arrangement.spacedBy(10.dp)
+                ) {
+                    items(stores) { store ->
+                        store?.let {
+                            ItemStore(
+                                store = it,
+                                onStoreClick = {
+                                    onAction(StoreListAction.OnStoreClick)
+                                }
+                            )
+                        }
+                    }
+                    item {
+                        if (stores.loadState.append is LoadState.Loading) {
+                            Row(
+                                modifier = Modifier.fillMaxWidth(),
+                                verticalAlignment = Alignment.CenterVertically,
+                                horizontalArrangement = Arrangement.Center
+                            ) {
+                                CircularProgressIndicator()
+                            }
                         }
                     }
                 }

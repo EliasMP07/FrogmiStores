@@ -20,10 +20,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
-import androidx.paging.LoadState
-import androidx.paging.compose.LazyPagingItems
 import com.example.frogmistores.core.presentation.designsystem.ext.shimmerEffect
-import com.example.frogmistores.domain.model.Store
 
 @Composable
 fun ShimmerListStoreItem(

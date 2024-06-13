@@ -1,6 +1,5 @@
 package com.example.frogmistores.data.remote
 
-import com.example.frogmistores.data.remote.dto.StoreDto
 import com.example.frogmistores.data.remote.dto.StoresResponse
 import com.example.frogmistores.data.utils.Const
 import retrofit2.http.GET

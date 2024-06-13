@@ -6,6 +6,8 @@ import com.example.frogmistores.core.domain.UserThemePreferences
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -14,12 +16,17 @@ class MainViewModel @Inject constructor(
     private val userThemePreferences: UserThemePreferences
 ): ViewModel() {
 
-    private val _themeValue = MutableStateFlow(false)
-    val themeValue: StateFlow<Boolean> get() = _themeValue
+    private val _state = MutableStateFlow(MainState())
+    val state : StateFlow<MainState> get() = _state.asStateFlow()
+
     init {
         viewModelScope.launch {
-            userThemePreferences.getTheme().collect{
-                _themeValue.value = it
+            userThemePreferences.getTheme().collect{ valueTheme ->
+                _state.update {
+                    it.copy(
+                        themeValue = valueTheme
+                    )
+                }
             }
         }
     }
@@ -30,7 +37,7 @@ class MainViewModel @Inject constructor(
         when(action){
             MainAction.OnUpdateTheme -> {
                 viewModelScope.launch {
-                    userThemePreferences.setTheme(!_themeValue.value)
+                    userThemePreferences.setTheme(!state.value.themeValue!!)
                 }
             }
         }

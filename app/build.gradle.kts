@@ -32,6 +32,7 @@ android {
         }
     }
     compileOptions {
+        isCoreLibraryDesugaringEnabled = true
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
@@ -54,15 +55,24 @@ android {
 
 dependencies {
 
+
+    // Get day of week api 25 or lower
+    coreLibraryDesugaring(libs.desugar.jdk.libs)
+
     //Room
     implementation(libs.androidx.room.runtime)
     kapt(libs.androidx.room.compiler)
     implementation(libs.androidx.room.ktx)
     implementation(libs.androidx.room.paging)
+
+    //Paging
     implementation(libs.androidx.paging.runtime.ktx)
     implementation(libs.androidx.paging.compose)
 
+    //SplashScreen
     implementation(libs.androidx.core.splashscreen)
+
+    //DaggerHilt
     kapt(libs.hilt.compiler)
     kapt(libs.hilt.compiler.android)
     implementation(libs.hilt.android.testing)
@@ -70,12 +80,14 @@ dependencies {
     implementation(libs.hilt.navigation.compose)
 
     implementation(libs.androidx.compose.material.icon)
+
+    //DataStore
     implementation(libs.androidx.datastore)
 
+    //Retrofit
     implementation(libs.retrofit)
     implementation(libs.converter.gson)
     implementation(libs.logging.interceptor)
-    implementation(libs.glide.compose)
 
     implementation(libs.androidx.compose.animation)
     implementation(libs.androidx.navigation.compose)
