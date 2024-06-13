@@ -51,12 +51,6 @@ fun NavigationRoot(
         }
         composable(
             route = Screen.StoreDetail.route,
-            enterTransition = {
-                scaleIn()
-            },
-            exitTransition = {
-                scaleOut()
-            },
             arguments = listOf(navArgument(NavArgs.StoreID.key) {
                 type = parcelableTypeOf<Store>()
             })

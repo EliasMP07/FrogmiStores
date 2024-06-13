@@ -78,6 +78,7 @@ private fun StoreDetailScreen(
         position = CameraPosition.fromLatLngZoom(storePosition, 15f)
     }
     Scaffold(
+        modifier = Modifier.background(MaterialTheme.colorScheme.background),
         topBar = {
             FrogmiStoreToolbar(
                 showBackButton = true,
