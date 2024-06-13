@@ -9,6 +9,12 @@ import com.example.frogmistores.core.presentation.network.observeConnectivityAsF
 import com.example.frogmistores.core.presentation.ui.utils.ConnectionState
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 
+/**
+ * Función composable que observa el estado de conectividad y lo proporciona como un estado composable.
+ * Utiliza produceState para crear y manejar el estado basado en un flujo de conectividad.
+ *
+ * @return El estado de la conectividad.
+ */
 @ExperimentalCoroutinesApi
 @Composable
 fun connectivityState(): State<ConnectionState> {

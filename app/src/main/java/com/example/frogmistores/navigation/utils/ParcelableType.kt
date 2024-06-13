@@ -7,6 +7,12 @@ import androidx.navigation.NavType
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
 
+/**
+ * Función genérica para crear un tipo de navegación personalizado para objetos Parcelable.
+ * Utiliza la biblioteca de serialización de Kotlin para convertir objetos entre su representación JSON y Parcelable.
+ *
+ * @return Un objeto NavType para el tipo Parcelable especificado.
+ */
 inline fun <reified T: Parcelable> parcelableTypeOf() = object : NavType<T>(isNullableAllowed = false){
     override fun get(bundle: Bundle, key: String): T? {
         return bundle.getParcelable(key)

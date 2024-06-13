@@ -22,11 +22,17 @@ import retrofit2.create
 import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
-
+/**
+ * Módulo de Dagger-Hilt para proveer dependencias a nivel de aplicación.
+ */
 @Module
 @InstallIn(SingletonComponent::class)
 object AppModule {
 
+    /**
+     * Provee una instancia de OkHttpClient con configuraciones específicas.
+     * @return Instancia de OkHttpClient.
+     */
     @Provides
     @Singleton
     fun provideHttpClient(): OkHttpClient {
@@ -36,7 +42,11 @@ object AppModule {
             .build()
     }
 
-
+    /**
+     * Provee una instancia de FrogmiStoreDatabase.
+     * @param context Contexto de la aplicación.
+     * @return Instancia de FrogmiStoreDatabase.
+     */
     @Provides
     @Singleton
     fun provideFrogmiStoreDatabase(
@@ -49,6 +59,11 @@ object AppModule {
         ).build()
     }
 
+    /**
+     * Provee una instancia de FrogmiStoresApi.
+     * @param okHttpClient Instancia de OkHttpClient.
+     * @return Instancia de FrogmiStoresApi.
+     */
     @Provides
     @Singleton
     fun provideFrogmiStoreApi(
@@ -62,6 +77,12 @@ object AppModule {
             .create()
     }
 
+    /**
+     * Provee una instancia de StoreRepository.
+     * @param frogmiStoresApi Instancia de FrogmiStoresApi.
+     * @param storeDatabase Instancia de FrogmiStoreDatabase.
+     * @return Instancia de StoreRepository.
+     */
     @Provides
     @Singleton
     fun provideStoreRepository(
@@ -69,6 +90,11 @@ object AppModule {
         storeDatabase: FrogmiStoreDatabase
     ): StoreRepository = StoreRepositoryImpl(frogmiStoresApi, storeDatabase)
 
+    /**
+     * Provee una instancia de GetAllStoresUseCase.
+     * @param repository Instancia de StoreRepository.
+     * @return Instancia de GetAllStoresUseCase.
+     */
     @Provides
     @Singleton
     fun provideGetAllStoresUseCase(repository: StoreRepository): GetAllStoresUseCase = GetAllStoresUseCase(repository)

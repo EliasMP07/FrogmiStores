@@ -11,6 +11,12 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+/**
+ * ViewModel para la pantalla principal.
+ * Utiliza Hilt para la inyección de dependencias.
+ *
+ * @property userThemePreferences Preferencias del tema del usuario.
+ */
 @HiltViewModel
 class MainViewModel @Inject constructor(
     private val userThemePreferences: UserThemePreferences

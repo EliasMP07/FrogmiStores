@@ -55,8 +55,10 @@ fun StoreDetailScreenRoot(
     val state by viewModel.state.collectAsState()
     StoreDetailScreen(
         state = state,
-        onAction = {
-
+        onAction = {action ->
+            when(action){
+                StoreDetailAction.OnBackClick -> onBackClick()
+            }
         }
     )
 }
@@ -67,8 +69,8 @@ private fun StoreDetailScreen(
     state: StoreDetailState,
     onAction: (StoreDetailAction) -> Unit
 ) {
-    var uiSettings by remember { mutableStateOf(MapUiSettings()) }
-    var properties by remember {
+    val uiSettings by remember { mutableStateOf(MapUiSettings()) }
+    val properties by remember {
         mutableStateOf(MapProperties(mapType = MapType.NORMAL))
     }
     val storePosition = LatLng(state.store.latitude, state.store.longitude)
@@ -81,7 +83,7 @@ private fun StoreDetailScreen(
                 showBackButton = true,
                 title = "StoreDetail",
                 onBackClick = {
-
+                    onAction(StoreDetailAction.OnBackClick)
                 }
             )
         }

@@ -4,6 +4,10 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
+/**
+ * Entidad que representa una tienda en la base de datos.
+ * Cada propiedad de la entidad se mapea a una columna en la tabla correspondiente.
+ */
 @Entity
 data class StoreEntity(
     @PrimaryKey(autoGenerate = false)

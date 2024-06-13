@@ -11,6 +11,12 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import javax.inject.Inject
 
+/**
+ * ViewModel para la pantalla de detalles de la tienda.
+ * Utiliza Hilt para la inyección de dependencias.
+ *
+ * @property savedStateHandle Manejador de estado guardado, utilizado para recuperar y almacenar el estado.
+ */
 @HiltViewModel
 class StoreDetailViewModel @Inject constructor(
     private val savedStateHandle: SavedStateHandle,
@@ -20,6 +26,7 @@ class StoreDetailViewModel @Inject constructor(
     val state: StateFlow<StoreDetailState> get() =_state.asStateFlow()
 
     init {
+        // Recupera el objeto Store del savedStateHandle usando la clave proporcionada en NavArgs.
         val store: Store = savedStateHandle[NavArgs.StoreID.key]!!
         _state.update {
             it.copy(

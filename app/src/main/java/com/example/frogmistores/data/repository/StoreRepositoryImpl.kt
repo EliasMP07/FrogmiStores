@@ -17,10 +17,20 @@ import com.example.frogmistores.domain.repository.StoreRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
+/**
+ * Implementación del repositorio de tiendas que utiliza una API remota y una base de datos local.
+ * @property frogmiStoresApi Instancia del servicio de API FrogmiStoresApi.
+ * @property storeDatabase Instancia de la base de datos FrogmiStoreDatabase.
+ */
 class StoreRepositoryImpl(
     private val frogmiStoresApi: FrogmiStoresApi,
     private val storeDatabase: FrogmiStoreDatabase
 ) : StoreRepository {
+
+    /**
+     * Obtiene todas las tiendas en un flujo paginado.
+     * @return Un flujo de datos paginados de tiendas.
+     */
     override fun getAllStores(): Flow<PagingData<Store>> {
         val pagingSourceFactory = {
             storeDatabase.dao.pagingSource()
@@ -38,4 +48,5 @@ class StoreRepositoryImpl(
             }
         }
     }
+
 }

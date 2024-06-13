@@ -10,7 +10,9 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.callbackFlow
 
-
+/**
+ * Extensión para obtener el estado actual de la conectividad de la red.
+ */
 val Context.currentConnectivityState: ConnectionState
     get() {
         val connectivityManager = getSystemService(Context.CONNECTIVITY_SERVICE)
@@ -18,7 +20,10 @@ val Context.currentConnectivityState: ConnectionState
         return getCurrentConnectivityState(connectivityManager)
     }
 
-
+/**
+ * Función para observar el estado de la conectividad como un flujo (Flow).
+ * Utiliza callbackFlow para emitir los cambios en el estado de la conectividad.
+ */
 @ExperimentalCoroutinesApi
 fun Context.observeConnectivityAsFlow() = callbackFlow {
     val connectivityManager =
@@ -40,6 +45,10 @@ fun Context.observeConnectivityAsFlow() = callbackFlow {
     }
 }
 
+/**
+ * Función auxiliar para obtener el estado actual de la conectividad.
+ * Verifica todas las redes y determina si hay conectividad a Internet.
+ */
 private fun getCurrentConnectivityState(
     connectivityManager: ConnectivityManager
 ): ConnectionState {
@@ -51,6 +60,11 @@ private fun getCurrentConnectivityState(
     return if (connected) ConnectionState.Available else ConnectionState.Unavailable
 }
 
+/**
+ * Función para crear un NetworkCallback que recibe un lambda para manejar los cambios en el estado de la conectividad.
+ * @param callback Lambda que se ejecuta cuando cambia el estado de la conectividad.
+ * @return Un objeto ConnectivityManager.NetworkCallback.
+ */
 fun NetworkCallback(callback: (ConnectionState)-> Unit)
         : ConnectivityManager.NetworkCallback{
     return object : ConnectivityManager.NetworkCallback(){
