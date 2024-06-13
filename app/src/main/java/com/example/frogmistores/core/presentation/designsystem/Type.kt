@@ -1,4 +1,4 @@
-package com.example.frogmistores.ui.theme
+package com.example.frogmistores.core.presentation.designsystem
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle
