@@ -1,6 +1,4 @@
-@file:OptIn(ExperimentalMaterial3Api::class, ExperimentalMaterial3Api::class,
-    ExperimentalMaterial3Api::class, ExperimentalMaterial3Api::class
-)
+
 
 package com.example.frogmistores.core.presentation.designsystem.component
 
@@ -33,6 +31,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.delay
 
+@ExperimentalMaterial3Api
 @Composable
 fun <T> SwipeToDeleteContainer(
     item: T,
@@ -81,6 +80,7 @@ fun <T> SwipeToDeleteContainer(
     }
 }
 
+@ExperimentalMaterial3Api
 @Composable
 fun DeleteBackground(swipeDismissState: SwipeToDismissBoxState) {
     val color = if (swipeDismissState.dismissDirection == SwipeToDismissBoxValue.EndToStart) {

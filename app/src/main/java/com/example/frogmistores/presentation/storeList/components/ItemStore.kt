@@ -35,9 +35,7 @@ import com.example.frogmistores.domain.model.Store
 fun ItemStore(
     modifier: Modifier = Modifier,
     store: Store,
-    onStoreClick: () -> Unit,
-    onFavoriteClick: () -> Unit,
-    isFavorite: Boolean,
+    onStoreClick: () -> Unit
 ){
     ElevatedCard(
         modifier = modifier,
@@ -45,25 +43,26 @@ fun ItemStore(
         shape = RoundedCornerShape(30.dp),
         onClick = onStoreClick
     ) {
-        Row(
-            modifier = Modifier
-                .background(MaterialTheme.colorScheme.background)
-                .border(2.dp, MaterialTheme.colorScheme.onBackground, RoundedCornerShape(30.dp))
-                .fillMaxWidth()
-                .padding(10.dp),
-            verticalAlignment = Alignment.CenterVertically
-        ){
-            IconStore()
-            Column(
-                modifier = Modifier.padding(start = 10.dp)
+        Box{
+            Row(
+                modifier = Modifier
+                    .background(MaterialTheme.colorScheme.background)
+                    .border(2.dp, MaterialTheme.colorScheme.onBackground, RoundedCornerShape(30.dp))
+                    .fillMaxWidth()
+                    .padding(10.dp),
+                verticalAlignment = Alignment.CenterVertically
             ){
-                Text(text = store.name, style = MaterialTheme.typography.titleLarge)
-                FieldStore(icon = CodeIcon , text = store.code )
-                FieldStore(icon = LocationStore, text = store.fullAddress)
-            }
-            Spacer(modifier = Modifier.weight(1f).padding(10.dp))
-            IconButton(onClick = onFavoriteClick) {
-                Icon(imageVector = if (isFavorite) Icons.Rounded.Favorite else Icons.Rounded.FavoriteBorder, contentDescription = "Tienda favorita")
+                IconStore()
+                Column(
+                    modifier = Modifier.padding(start = 10.dp)
+                ){
+                    Text(text = store.name, style = MaterialTheme.typography.titleLarge)
+                    FieldStore(icon = CodeIcon , text = store.code )
+                    FieldStore(icon = LocationStore, text = store.fullAddress)
+                }
+                Spacer(modifier = Modifier
+                    .weight(1f)
+                    .padding(10.dp))
             }
         }
     }

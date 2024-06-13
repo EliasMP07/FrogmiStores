@@ -29,7 +29,6 @@ class StoreListViewModel @Inject constructor(
         action: StoreListAction
     ){
         when(action){
-            StoreListAction.OnFavoriteClick -> TODO()
             else -> Unit
         }
     }

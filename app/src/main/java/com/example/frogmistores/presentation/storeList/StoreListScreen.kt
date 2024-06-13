@@ -46,7 +46,6 @@ import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.items
 import com.example.frogmistores.R
 import com.example.frogmistores.core.presentation.designsystem.component.FrogmiStoreToolbar
-import com.example.frogmistores.core.presentation.designsystem.ext.isScrolled
 import com.example.frogmistores.data.utils.Const
 import com.example.frogmistores.domain.model.Store
 import com.example.frogmistores.presentation.storeList.components.ItemStore
@@ -60,9 +59,7 @@ fun StoreListScreenRoot(
 ) {
     val state by viewModel.state.collectAsState()
     val stores = viewModel.storePaggingFlow.collectAsLazyPagingItems()
-
     val context = LocalContext.current
-
     LaunchedEffect(key1 = stores.loadState) {
         if (stores.loadState.refresh is LoadState.Error) {
             Toast.makeText(
@@ -113,30 +110,6 @@ private fun StoreListScreen(
                 }
             )
         },
-        floatingActionButton = {
-            ExtendedFloatingActionButton(
-                containerColor = MaterialTheme.colorScheme.primary,
-                text = {
-                    Text(
-                        text = stringResource(R.string.myfavorites),
-                        style = MaterialTheme.typography.labelMedium.copy(
-                            color = MaterialTheme.colorScheme.onPrimary
-                        )
-                    )
-                },
-                icon = {
-                    Icon(
-                        imageVector = Icons.Rounded.Favorite,
-                        contentDescription = "Icono de agregar nueva materia",
-                        tint = MaterialTheme.colorScheme.onPrimary
-                    )
-                },
-                onClick = {
-                    onAction(StoreListAction.OnMyFavoritesClick)
-                },
-                expanded = lazyColumnState.isScrolled()
-            )
-        }
     ) {
         if (stores.loadState.refresh is LoadState.Loading) {
             LazyColumn(
@@ -164,13 +137,9 @@ private fun StoreListScreen(
                     items = stores) { stores ->
                     if (stores != null) {
                         ItemStore(
-                            isFavorite = false,
                             store = stores,
                             onStoreClick = {
                                 onAction(StoreListAction.OnStoreClick)
-                            },
-                            onFavoriteClick = {
-                                onAction(StoreListAction.OnFavoriteClick)
                             }
                         )
                     }
