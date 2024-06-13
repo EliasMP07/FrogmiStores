@@ -1,5 +1,6 @@
 [versions]
 agp = "8.4.1"
+converterGson = "2.11.0"
 coreSplashscreen = "1.0.1"
 kotlin = "1.9.24"
 coreKtx = "1.13.1"
@@ -14,6 +15,7 @@ hilt_version = "2.51.1"
 datastore_version = "1.1.1"
 logging_interceptor_version = "5.0.0-alpha.2"
 pagingCompose = "1.0.0-alpha18"
+pagingRuntimeKtx = "3.1.1"
 retrofit_version = "2.11.0"
 glide_version = "1.0.0-beta01"
 icons_dependency = "1.6.7"
@@ -26,10 +28,12 @@ roomRuntime = "2.6.1"
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 androidx-core-splashscreen = { module = "androidx.core:core-splashscreen", version.ref = "coreSplashscreen" }
 androidx-paging-compose = { module = "androidx.paging:paging-compose", version.ref = "pagingCompose" }
+androidx-paging-runtime-ktx = { module = "androidx.paging:paging-runtime-ktx", version.ref = "pagingRuntimeKtx" }
 androidx-room-compiler = { module = "androidx.room:room-compiler", version.ref = "roomRuntime" }
 androidx-room-ktx = { module = "androidx.room:room-ktx", version.ref = "roomRuntime" }
 androidx-room-paging = { module = "androidx.room:room-paging", version.ref = "roomRuntime" }
 androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "roomRuntime" }
+converter-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "converterGson" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }

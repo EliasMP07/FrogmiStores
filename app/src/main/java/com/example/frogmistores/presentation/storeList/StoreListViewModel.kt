@@ -23,15 +23,4 @@ class StoreListViewModel @Inject constructor(
 
     val storePaggingFlow = getAllStoresUseCase().cachedIn(viewModelScope)
 
-    private var _state = MutableStateFlow(StoreListState())
-    val state: StateFlow<StoreListState> get() = _state.asStateFlow()
-
-    fun onAction(
-        action: StoreListAction
-    ){
-        when(action){
-            else -> Unit
-        }
-    }
-
 }

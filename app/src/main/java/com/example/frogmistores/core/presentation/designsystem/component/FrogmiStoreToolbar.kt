@@ -1,4 +1,5 @@
-@file:OptIn(ExperimentalMaterial3Api::class, ExperimentalMaterial3Api::class,
+@file:OptIn(
+    ExperimentalMaterial3Api::class, ExperimentalMaterial3Api::class,
     ExperimentalMaterial3Api::class, ExperimentalMaterial3Api::class
 )
 
@@ -25,9 +26,11 @@ import androidx.compose.ui.unit.dp
 
 @Composable
 fun FrogmiStoreToolbar(
+    modifier: Modifier = Modifier,
     showBackButton: Boolean,
     title: String,
-    modifier: Modifier = Modifier,
+    isSwitchTheme: Boolean = false,
+    switchContent: (@Composable () -> Unit) = {},
     onBackClick: () -> Unit = {},
     scrollBehavior: TopAppBarScrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior(),
     startContent: (@Composable () -> Unit)? = null
@@ -52,11 +55,17 @@ fun FrogmiStoreToolbar(
             containerColor = MaterialTheme.colorScheme.primary,
             scrolledContainerColor = MaterialTheme.colorScheme.primary,
         ),
+        actions = {
+            if (isSwitchTheme) {
+                switchContent()
+            }
+        },
         navigationIcon = {
-            if (showBackButton){
+            if (showBackButton) {
                 IconButton(onClick = onBackClick) {
                     Icon(
-                        imageVector = Icons.Rounded.ArrowBackIosNew, contentDescription = "Back screen",
+                        imageVector = Icons.Rounded.ArrowBackIosNew,
+                        contentDescription = "Back screen",
                         tint = MaterialTheme.colorScheme.onPrimary
                     )
                 }

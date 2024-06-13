@@ -46,14 +46,16 @@ import com.example.frogmistores.domain.model.Store
 import com.example.frogmistores.presentation.storeList.components.CustomSnackbar
 import com.example.frogmistores.presentation.storeList.components.ItemStore
 import com.example.frogmistores.presentation.storeList.components.ShimmerListStoreItem
+import com.example.frogmistores.presentation.storeList.components.ThemeSwitcher
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 
 @Composable
 fun StoreListScreenRoot(
+    isDarkTheme: Boolean,
     onStoreClickDetail: () -> Unit,
+    onThemeUpdate: () -> Unit,
     viewModel: StoreListViewModel = hiltViewModel()
 ) {
-    val state by viewModel.state.collectAsState()
     val stores = viewModel.storePaggingFlow.collectAsLazyPagingItems()
     val context = LocalContext.current
     LaunchedEffect(key1 = stores.loadState) {
@@ -66,20 +68,21 @@ fun StoreListScreenRoot(
         }
     }
     StoreListScreen(
-        state = state,
+        isDarkTheme = isDarkTheme,
         onAction = { action ->
             when (action) {
                 StoreListAction.OnStoreClick -> onStoreClickDetail()
+                StoreListAction.OnUpdateTheme -> onThemeUpdate()
             }
         },
-        stores
+        stores = stores
     )
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun StoreListScreen(
-    state: StoreListState,
+    isDarkTheme: Boolean,
     onAction: (StoreListAction) -> Unit,
     stores: LazyPagingItems<Store>
 ) {
@@ -115,6 +118,15 @@ private fun StoreListScreen(
             FrogmiStoreToolbar(
                 scrollBehavior = scrollBehavior,
                 showBackButton = false,
+                isSwitchTheme = true,
+                switchContent = {
+                    ThemeSwitcher(
+                        darkTheme = isDarkTheme,
+                        size = 40.dp
+                    ) {
+                        onAction(StoreListAction.OnUpdateTheme)
+                    }
+                },
                 title = stringResource(id = R.string.app_name),
                 startContent = {
                     Image(
