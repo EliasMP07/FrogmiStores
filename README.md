@@ -16,10 +16,13 @@ archivo string el cual se encuentra en Res/values/string.xml
 
 ![Image text](https://github.com/EliasMP07/FrogmiStores/blob/main/app/src/main/assets/add_key_gooogle.png)
 
-·#Ejecucion de la APP
+# Ejecucion de la APP
 
-- Asegúrate de que tu dispositivo o emulador esté conectado.
-- Haz clic en el botón "Run" en Android Studio
+- Primero clona el repositorio en tu equipo: https://github.com/EliasMP07/FrogmiStores.git
+- Espera a que se sincronize el gradle y el proyecto
+- Ingresa tus 2 credenciales y la de GooogleMaps
+- Haz clic en el botón "Run" en Android Studio y espera a que se ejecute a segúrate de que tu dispositivo o emulador esté conectado.
+
 
 ##Video de ejecucion de App
 
