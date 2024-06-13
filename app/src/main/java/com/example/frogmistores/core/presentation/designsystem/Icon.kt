@@ -10,10 +10,10 @@ val StoreIcon: ImageVector
     @Composable
     get() = ImageVector.vectorResource(id = R.drawable.store_icon)
 
-val Logo: ImageVector
-    @Composable
-    get() = ImageVector.vectorResource(id = R.drawable.logo)
-
 val LocationStore: ImageVector
     @Composable
-    get() = ImageVector.vectorResource(id = R.drawable.locatoonstore)
+    get() = ImageVector.vectorResource(id = R.drawable.location)
+
+val CodeIcon: ImageVector
+    @Composable
+    get() = ImageVector.vectorResource(id = R.drawable.code_icon)

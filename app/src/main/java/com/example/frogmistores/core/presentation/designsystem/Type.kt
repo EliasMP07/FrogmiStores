@@ -60,6 +60,18 @@ val Typography = Typography(
         fontSize = 14.sp,
         lineHeight = 24.sp,
     ),
+    titleMedium = TextStyle(
+        fontFamily = ValeraRound,
+        fontWeight = FontWeight.Bold,
+        fontSize = 16.sp,
+        lineHeight = 24.sp,
+    ),
+    titleLarge = TextStyle(
+        fontFamily = ValeraRound,
+        fontWeight = FontWeight.ExtraBold,
+        fontSize = 20.sp,
+        lineHeight = 24.sp,
+    ),
     headlineMedium = TextStyle(
         fontFamily = ValeraRound,
         fontWeight = FontWeight.SemiBold,
