@@ -31,13 +31,15 @@ import com.example.frogmistores.domain.model.Store
 fun ItemStore(
     modifier: Modifier = Modifier,
     store: Store,
-    onStoreClick: () -> Unit
+    onStoreClick: (Store) -> Unit
 ){
     ElevatedCard(
         modifier = modifier,
         elevation = CardDefaults.elevatedCardElevation(20.dp),
         shape = RoundedCornerShape(30.dp),
-        onClick = onStoreClick
+        onClick = {
+            onStoreClick(store)
+        }
     ) {
         Box{
             Row(

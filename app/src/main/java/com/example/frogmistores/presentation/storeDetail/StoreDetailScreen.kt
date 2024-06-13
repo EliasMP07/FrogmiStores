@@ -18,6 +18,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -48,10 +49,12 @@ import com.google.maps.android.compose.rememberCameraPositionState
 @ExperimentalMaterial3Api
 @Composable
 fun StoreDetailScreenRoot(
-    // viewModel: StoreDetailViewModel = hiltViewModel()
+    onBackClick: () -> Unit,
+    viewModel: StoreDetailViewModel = hiltViewModel()
 ) {
+    val state by viewModel.state.collectAsState()
     StoreDetailScreen(
-        state = StoreDetailState(),
+        state = state,
         onAction = {
 
         }
@@ -125,7 +128,7 @@ private fun StoreDetailScreen(
                         )
                         FieldStore(
                             modifier = Modifier.padding(20.dp),
-                            icon = StoreIcon, text = "Store1"
+                            icon = StoreIcon, text = state.store?.name?:""
                         )
                         Text(
                             modifier = Modifier.padding(start = 20.dp, top = 10.dp),
@@ -133,7 +136,7 @@ private fun StoreDetailScreen(
                         )
                         FieldStore(
                             modifier = Modifier.padding(20.dp),
-                            icon = CodeIcon, text = "232"
+                            icon = CodeIcon, text = state.store?.code?:""
                         )
                         Text(
                             modifier = Modifier.padding(start = 20.dp, top = 10.dp),
@@ -141,7 +144,7 @@ private fun StoreDetailScreen(
                         )
                         FieldStore(
                             modifier = Modifier.padding(20.dp),
-                            icon = LocationStore, text = "Elias"
+                            icon = LocationStore, text = state.store?.fullAddress?:""
                         )
                     }
                 }

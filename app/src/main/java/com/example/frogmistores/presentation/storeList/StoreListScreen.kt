@@ -50,7 +50,7 @@ import com.example.frogmistores.presentation.storeList.components.ThemeSwitcher
 @Composable
 fun StoreListScreenRoot(
     isDarkTheme: Boolean,
-    onStoreClickDetail: () -> Unit,
+    onStoreClickDetail: (Store) -> Unit,
     onThemeUpdate: () -> Unit,
     viewModel: StoreListViewModel = hiltViewModel()
 ) {
@@ -69,7 +69,9 @@ fun StoreListScreenRoot(
         isDarkTheme = isDarkTheme,
         onAction = { action ->
             when (action) {
-                StoreListAction.OnStoreClick -> onStoreClickDetail()
+                is StoreListAction.OnStoreDetailClick -> {
+                    onStoreClickDetail(action.store)
+                }
                 StoreListAction.OnUpdateTheme -> onThemeUpdate()
             }
         },
@@ -162,8 +164,8 @@ private fun StoreListScreen(
                         store?.let {
                             ItemStore(
                                 store = it,
-                                onStoreClick = {
-                                    onAction(StoreListAction.OnStoreClick)
+                                onStoreClick = {store ->
+                                    onAction(StoreListAction.OnStoreDetailClick(store))
                                 }
                             )
                         }
