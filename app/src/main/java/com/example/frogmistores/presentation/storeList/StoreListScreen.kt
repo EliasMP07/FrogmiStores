@@ -86,6 +86,7 @@ private fun StoreListScreen(
     onAction: (StoreListAction) -> Unit,
     stores: LazyPagingItems<Store>
 ) {
+    val context = LocalContext.current
     val connection by connectivityState()
     val topAppBarState = rememberTopAppBarState()
     val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior(
@@ -96,7 +97,7 @@ private fun StoreListScreen(
         if (connection == ConnectionState.Unavailable) {
             snackbarState.showSnackbar(
                 withDismissAction = true,
-                message = "No hay conexión",
+                message = context.getString(R.string.offine_text),
                 duration = SnackbarDuration.Short
             )
         }
@@ -129,7 +130,7 @@ private fun StoreListScreen(
                 startContent = {
                     Image(
                         painter = painterResource(id = R.drawable.logo),
-                        contentDescription = "Logo app"
+                        contentDescription = stringResource(R.string.content_description_icon_app)
                     )
                 }
             )

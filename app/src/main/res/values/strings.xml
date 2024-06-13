@@ -4,4 +4,8 @@
     <string name="field_store">"Tienda: "</string>
     <string name="field_code">"Codigo: "</string>
     <string name="field_location">"Direccion: "</string>
+    <string name="offine_text">No hay conexión</string>
+    <string name="content_description_icon_app">Logo app</string>
+    <string name="content_description_icon_store">Icono de tienda</string>
+    <string name="content_description_icono_de_campo">Icono de campo</string>
 </resources>

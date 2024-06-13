@@ -20,7 +20,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import com.example.frogmistores.R
 import com.example.frogmistores.core.presentation.designsystem.CodeIcon
 import com.example.frogmistores.core.presentation.designsystem.LocationStore
 import com.example.frogmistores.core.presentation.designsystem.StoreIcon
@@ -76,7 +78,7 @@ private fun IconStore(){
         contentAlignment = Alignment.Center
     ){
         Icon(
-            imageVector = StoreIcon, contentDescription = "Icono de tienda",
+            imageVector = StoreIcon, contentDescription = stringResource(R.string.content_description_icon_store),
             tint = MaterialTheme.colorScheme.background
         )
     }
@@ -91,7 +93,7 @@ fun FieldStore(
         modifier = modifier,
         verticalAlignment = Alignment.CenterVertically
     ){
-        Icon(imageVector = icon, contentDescription = "Icono de campo")
+        Icon(imageVector = icon, contentDescription = stringResource(R.string.content_description_icono_de_campo))
         Text(text = text, style = MaterialTheme.typography.bodyMedium)
     }
 }
