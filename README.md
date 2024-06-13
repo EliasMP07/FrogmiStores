@@ -24,4 +24,9 @@ archivo string el cual se encuentra en Res/values/string.xml
 ##Video de ejecucion de App
 
 ## Capturas
+![Image text](https://github.com/EliasMP07/FrogmiStores/blob/chore/README/app/src/main/assets/home_screen.png)
+![Image text](https://github.com/EliasMP07/FrogmiStores/blob/chore/README/app/src/main/assets/shimmerEffect.png)
+![Image text](https://github.com/EliasMP07/FrogmiStores/blob/chore/README/app/src/main/assets/detail_screen.png)
+
+
 
