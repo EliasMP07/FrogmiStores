@@ -33,8 +33,10 @@ class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        installSplashScreen().setKeepOnScreenCondition{
-            viewModel.state.value.themeValue != null
+        installSplashScreen().apply {
+            setKeepOnScreenCondition {
+                viewModel.state.value.themeValue == null
+            }
         }
         setContent {
             val state by viewModel.state.collectAsStateWithLifecycle()
